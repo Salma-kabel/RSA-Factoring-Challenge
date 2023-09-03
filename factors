@@ -16,4 +16,7 @@ def main():
                     if(num % mod == 0):
                         print("{}={}*{}".format(num,int(num // mod), int(mod)))
                         break
+                    if(num % (sqrt_ - mod) == 0):
+                        print("{}={}*{}".format(num, int(num // (sqrt_ - mod)), int(sqrt_ - mod)))
+                        break
 main()
