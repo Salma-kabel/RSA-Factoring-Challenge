@@ -7,16 +7,15 @@ def main():
     with open(argv[1], encoding="utf-8") as file_:
         for i in file_.readlines():
             num = int(i)
-            mod = 2
-            if(num % mod == 0):
-                print("{}={}*{}".format(num, int(num // mod), int(mod)))
-            else:
-                sqrt_ = int(math.sqrt(num)) + 1
-                for mod in range(3, sqrt_, 2):
-                    if(num % mod == 0):
-                        print("{}={}*{}".format(num,int(num // mod), int(mod)))
-                        break
-                    if(num % (sqrt_ - mod) == 0):
-                        print("{}={}*{}".format(num, int(num // (sqrt_ - mod)), int(sqrt_ - mod)))
-                        break
+            mod = factor(num)
+            print("{}={}*{}".format(num, int(num // mod), int(mod)))
+
+def factor(n):
+    x, y, l, d = 2, 2, 1, 1
+    g = lambda x: (x**2 + l) % n
+    while d == 1:
+        x = g(x)
+        y = g(g(y))
+        d = math.gcd(abs(x - y), n)
+    return d
 main()
